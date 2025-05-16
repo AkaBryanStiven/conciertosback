@@ -1,17 +1,17 @@
 const pool = require("../config/db");
 
 async function traerBandas() {
-  const [rows] = await pool.query("SELECT * FROM Bandascover");
+  const [rows] = await pool.query("SELECT * FROM BandasCover");
   return rows;
 }
 
 async function traerBandaPorNombre(nombre) {
-  const [rows] = await pool.query("SELECT * FROM Bandascover WHERE nombre = ?", [nombre]);
+  const [rows] = await pool.query("SELECT * FROM BandasCover WHERE nombre = ?", [nombre]);
   return rows;
 }
 
 async function traerBandaPorId(id) {
-  const [rows] = await pool.query("SELECT * FROM Bandascover WHERE idBanda = ?", [id]);
+  const [rows] = await pool.query("SELECT * FROM BandasCover WHERE idBanda = ?", [id]);
   return rows;
 }
 
@@ -23,7 +23,7 @@ async function agregarBanda(data) {
   } = data;
 
   await pool.query(
-    `INSERT INTO Bandascover (
+    `INSERT INTO BandasCover (
       nombre, nombre_inspirado_en, ciudad_origen, años_activos,
       num_integrantes, integrantes_resaca, tiene_triángulo,
       nombre_fanbase, veces_olvidaron_la_letra, porcentaje_similitud_con_original
@@ -35,7 +35,7 @@ async function agregarBanda(data) {
 }
 
 async function eliminarBanda(id) {
-  const [result] = await pool.query("DELETE FROM Bandascover WHERE idBanda = ?", [id]);
+  const [result] = await pool.query("DELETE FROM BandasCover WHERE idBanda = ?", [id]);
   return result.affectedRows > 0;
 }
 
@@ -47,7 +47,7 @@ async function modificarBandaId(id, data) {
   } = data;
 
   const [result] = await pool.query(
-    `UPDATE Bandascover SET
+    `UPDATE BandasCover SET
       nombre = ?, nombre_inspirado_en = ?, ciudad_origen = ?, años_activos = ?,
       num_integrantes = ?, integrantes_resaca = ?, tiene_triángulo = ?,
       nombre_fanbase = ?, veces_olvidaron_la_letra = ?, porcentaje_similitud_con_original = ?
