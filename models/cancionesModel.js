@@ -1,12 +1,12 @@
 const pool = require("../config/db");
 
 async function traerCanciones() {
-  const [rows] = await pool.query("SELECT * FROM cancionesReales");
+  const [rows] = await pool.query("SELECT * FROM CancionesReales");
   return rows;
 }
 
 async function traerCancionPorTitulo(titulo) {
-  const [rows] = await pool.query("SELECT * FROM cancionesReales WHERE titulo = ?", [titulo]);
+  const [rows] = await pool.query("SELECT * FROM CancionesReales WHERE titulo = ?", [titulo]);
   return rows;
 }
 
@@ -18,7 +18,7 @@ async function agregarCancion(cancion) {
   } = cancion;
 
   const [result] = await pool.query(
-    `INSERT INTO cancionesReales (
+    `INSERT INTO CancionesReales (
       titulo, banda_original, año_lanzamiento, genero,
       duracion_segundos, tiene_solo_guitarra, es_clasico,
       veces_versionada, idioma, popularidad_global
@@ -32,7 +32,7 @@ async function agregarCancion(cancion) {
 }
 
 async function eliminarCancion(titulo) {
-  const [result] = await pool.query("DELETE FROM cancionesReales WHERE titulo = ?", [titulo]);
+  const [result] = await pool.query("DELETE FROM CancionesReales WHERE titulo = ?", [titulo]);
   return result.affectedRows > 0;
 }
 
@@ -44,7 +44,7 @@ async function actualizarCancion(titulo, nuevaData) {
   } = nuevaData;
 
   const [result] = await pool.query(
-    `UPDATE cancionesReales SET
+    `UPDATE CancionesReales SET
       banda_original = ?, año_lanzamiento = ?, genero = ?,
       duracion_segundos = ?, tiene_solo_guitarra = ?, es_clasico = ?,
       veces_versionada = ?, idioma = ?, popularidad_global = ?
