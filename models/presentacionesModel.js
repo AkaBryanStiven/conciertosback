@@ -1,17 +1,17 @@
 const pool = require("../config/db");
 
 async function traerPresentaciones() {
-  const [rows] = await pool.query("SELECT * FROM presentaciones");
+  const [rows] = await pool.query("SELECT * FROM Presentaciones");
   return rows;
 }
 
 async function traerPorLugar(lugar) {
-  const [rows] = await pool.query("SELECT * FROM presentaciones WHERE lugar = ?", [lugar]);
+  const [rows] = await pool.query("SELECT * FROM Presentaciones WHERE lugar = ?", [lugar]);
   return rows;
 }
 
 async function traerPorLugarYFecha(lugar, fecha) {
-  const [rows] = await pool.query("SELECT * FROM presentaciones WHERE lugar = ? AND fecha = ?", [lugar, fecha]);
+  const [rows] = await pool.query("SELECT * FROM Presentaciones WHERE lugar = ? AND fecha = ?", [lugar, fecha]);
   return rows;
 }
 
@@ -22,7 +22,7 @@ async function agregarPresentacion(data) {
   } = data;
 
   const [result] = await pool.query(
-    `INSERT INTO presentaciones (
+    `INSERT INTO Presentaciones (
       idBanda, idCancion, lugar, fecha, publico_aproximado,
       duracion_minutos, sonido_fallo, guitarrista_rompio_cuerda, rating_publico
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -35,7 +35,7 @@ async function agregarPresentacion(data) {
 
 async function eliminarPresentacion(idBanda, idCancion, fecha) {
   const [result] = await pool.query(
-    "DELETE FROM presentaciones WHERE idBanda = ? AND idCancion = ? AND fecha = ?",
+    "DELETE FROM Presentaciones WHERE idBanda = ? AND idCancion = ? AND fecha = ?",
     [idBanda, idCancion, fecha]
   );
   return result.affectedRows > 0;
@@ -49,7 +49,7 @@ async function actualizarPresentacion(data) {
   } = data;
 
   const [result] = await pool.query(
-    `UPDATE presentaciones SET
+    `UPDATE Presentaciones SET
       lugar = ?, publico_aproximado = ?, duracion_minutos = ?,
       sonido_fallo = ?, guitarrista_rompio_cuerda = ?, rating_publico = ?
     WHERE idBanda = ? AND idCancion = ? AND fecha = ?`,
