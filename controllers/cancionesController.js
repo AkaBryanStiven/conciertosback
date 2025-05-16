@@ -7,7 +7,8 @@ router.get("/conciertosBaraticos/canciones/obtenerTodas", async (req, res) => {
     const result = await model.traerCanciones();
     res.json(result);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener canciones" });
+    console.error("Error al obtener canciones:", error);
+    res.status(500).json({ message: "Error al obtener canciones", error: error.message });
   }
 });
 
