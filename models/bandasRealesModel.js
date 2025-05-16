@@ -12,7 +12,7 @@ const bandaRealSchema = new Schema({
   influencias: [String]
 }, { timestamps: true });
 
-const BandaReal = mongoose.model("BandasReales", bandaRealSchema);
+const BandaReal = mongoose.model("bandasreales", bandaRealSchema);
 
 // Funciones CRUD
 async function traerBandasReales() {

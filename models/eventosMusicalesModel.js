@@ -11,7 +11,7 @@ const eventoMusicalSchema = new Schema({
   leyenda: Boolean
 }, { timestamps: true });
 
-const EventoMusical = mongoose.model("EventosMusicales", eventoMusicalSchema);
+const EventoMusical = mongoose.model("eventosmusicales", eventoMusicalSchema);
 
 // Funciones CRUD
 async function traerEventosMusicales() {

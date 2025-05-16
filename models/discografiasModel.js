@@ -13,7 +13,7 @@ const discografiaSchema = new Schema({
   portada: String
 }, { timestamps: true });
 
-const Discografia = mongoose.model("Discografias", discografiaSchema);
+const Discografia = mongoose.model("discografias", discografiaSchema);
 
 // Funciones CRUD
 async function traerDiscografias() {
